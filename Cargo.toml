@@ -1,0 +1,18 @@
+[package]
+name = "WGPUPowder"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+wgpu = { version = "29", features = ["webgl"] }  # "webgl" = fallback when the browser lacks WebGPU
+winit = "0.30"
+log = "0.4"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+pollster = "0.4"
+env_logger = "0.11"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+wasm-bindgen-futures = "0.4"
+console_error_panic_hook = "0.1"
+console_log = "1"
